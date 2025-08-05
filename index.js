@@ -12,10 +12,10 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
-const OBJECT_TYPE = "2-171825780";
+const OBJECT_ID = "2-171825780";
 
 app.get("/", async (req, res) => {
-  const valorantAgents = `https://api.hubspot.com/crm/v3/objects/${OBJECT_TYPE}`;
+  const valorantAgents = `https://api.hubspot.com/crm/v3/objects/${OBJECT_ID}`;
   const headers = {
     Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
     "Content-Type": "application/json",
@@ -43,7 +43,7 @@ app.post("/update-cobj", async (req, res) => {
   const { name, agent_type, ultimate } = req.body;
   try {
     await axios.post(
-      `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE}`,
+      `https://api.hubapi.com/crm/v3/objects/${OBJECT_ID}`,
       {
         properties: { name, agent_type, ultimate },
       },
