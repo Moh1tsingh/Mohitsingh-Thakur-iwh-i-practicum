@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 Valorant Agents
+    a(href="/update-cobj") Add to this table
+    table
+      thead
+        tr
+          th Name
+          th Agent Type
+          th Ultimate
+      tbody
+        each agent in agents
+          tr
+            td= agent.properties.name
+            td= agent.properties.agent_type
+            td= agent.properties.ultimate
