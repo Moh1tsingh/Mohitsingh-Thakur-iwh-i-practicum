@@ -1,11 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
-const path = require("path");
 
 const app = express();
 app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -14,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
 const OBJECT_ID = "2-171825780";
 
-app.get("/", async (req, res) => {
+app.get("/", async (_, res) => {
   const valorantAgents = `https://api.hubspot.com/crm/v3/objects/${OBJECT_ID}`;
   const headers = {
     Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -26,14 +24,14 @@ app.get("/", async (req, res) => {
       params: { properties: "name,agent_type,ultimate" },
     });
     const agents = resp.data.results || [];
-    res.render("homepage", { title: "Valorant Agents", agents });
+    res.render("homepage", { title: "Valorant Agents table", agents });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching agents");
   }
 });
 
-app.get("/update-cobj", async (req, res) => {
+app.get("/update-cobj", async (_, res) => {
   res.render("updates", {
     title: "Update Custom Object Form | Integrating With HubSpot I Practicum",
   });

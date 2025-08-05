@@ -2,11 +2,12 @@ doctype html
 html
   head
     title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/css/style.css")
   body
-    h1 Valorant Agents
-    a(href="/update-cobj") Add to this table
-    table
+    h1 Valorant Agents table
+    a(href="/update-cobj" style="color: blue; text-decoration: underline; font-size: 1.2em;") Add/Update this table
+    table.custom-table
       thead
         tr
           th Name
